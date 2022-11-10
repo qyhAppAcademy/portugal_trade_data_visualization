@@ -1,16 +1,16 @@
-JS Project Proposal
+**JS Project Proposal**
 
 Portuguese Oceanic Trade Routes Data Visualization
 
 
-Background
+**Background**
 
 Portuguese oceanic trade routes involve geographic data, maritime data, and trade data.
 
 This project is to visualize such data with regards to the trade routes on a globe, using d3-geo and d3.js, and to provide UI for users to interact with such data.
 
 
-Functionality & MVPs
+**Functionality & MVPs**
 
 With this Portuguese Oceanic Trade Routes Data Visualization App, users will be able to:
 
@@ -28,18 +28,18 @@ In addition, this project will include:
     A production README
 
 
-Wireframes
+**Wireframes**
 
 ![alt text](https://github.com/qyhAppAcademy/portuguese_oceanic_trade_routes_data_visualization/blob/main/wireframe.png)
 
-On the left, there will be an interactive globe to display the Portuguese oceanic trade routes.
+    On the left, there will be an interactive globe to display the Portuguese oceanic trade routes.
 
-On the right, there will be a control section for selecting specific data with regards to a trade route.
+    On the right, there will be a control section for selecting specific data with regards to a trade route.
 
-Below the control section, there will be a display section for the collective data with regards to the selected route.
+    Below the control section, there will be a display section for the collective data with regards to the selected route.
 
 
-Technologies, Libraries, APIs
+**Technologies, Libraries, APIs**
 
 This project will be implemented with the following technologies:
 
@@ -52,7 +52,7 @@ This project will be implemented with the following technologies:
     npm to manage project dependencies
 
 
-Implementation Timeline
+**Implementation Timeline**
 
     Friday & Weekend: Setup project, getting webpack up and running. Get the global to show up on the screen, and spend time getting comfortable with d3-geo. Render trade routes on the global.
 
