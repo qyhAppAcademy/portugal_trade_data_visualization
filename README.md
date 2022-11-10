@@ -30,7 +30,7 @@ In addition, this project will include:
 
 Wireframes
 
-"./wireframes.png"
+![alt text](https://github.com/qyhAppAcademy/portuguese_oceanic_trade_routes_data_visualization/blob/main/wireframe.png)
 
 On the left, there will be an interactive globe to display the Portuguese oceanic trade routes.
 
