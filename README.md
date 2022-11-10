@@ -25,6 +25,7 @@ With this Portuguese Oceanic Trade Routes Data Visualization App, users will be 
 In addition, this project will include:
 
     An About modal describing the background and user instructions
+    
     A production README
 
 
