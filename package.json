@@ -16,14 +16,24 @@
   "dependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
+    "@d3/world-tour": "https://api.observablehq.com/@d3/world-tour@238.tgz?v=3",
+    "@observablehq/runtime": "^5.0.1",
     "babel-loader": "^9.1.0",
     "core-js": "^3.26.0",
     "css-loader": "^6.7.1",
+    "d3": "^7.6.1",
+    "d3-geo": "^3.0.1",
+    "fs": "^0.0.1-security",
     "mini-css-extract-plugin": "^2.6.1",
     "regenerator-runtime": "^0.13.10",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
+    "topojson": "^3.0.2",
+    "tradingeconomics": "^1.0.18",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
   }
 }

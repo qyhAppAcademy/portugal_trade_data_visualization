@@ -1,0 +1,14 @@
+{
+  "name": "@d3/world-tour",
+  "main": "0e9181d646defd6c@238.js",
+  "version": "238.0.0",
+  "homepage": "https://observablehq.com/@d3/world-tour",
+  "author": {
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}
