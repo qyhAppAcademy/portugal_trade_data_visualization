@@ -1,4 +1,4 @@
-import { Trade, findTradesByProductGroup } from "./trade.js";
+import { Trade, findTradesByProductGroup, findTopTenTrades } from "./trade.js";
 
 const TRADES = findTradesByProductGroup();
 
@@ -39,13 +39,22 @@ class World {
             .on('mouseover', this.countryOn)
             .on('mousemove', this.mousemove.bind(this))
             .on('mouseout', this.countryOff)
-            .each((country => {
-                console.log(country);
-            }));
+            // .each(function (d, i) {
+            //     // const countryName = d.properties.name;                
+            //     // console.log(this);
+            //     d3.select(this).classed("selected-top-10", true);
+            // });
             // .on("click", function(d){
             //     d3.select(this).classed("selected", true);
             // });
             // .attr("fill", "#cccccc");
+        // const countriesList = d3.selectAll(".country");
+        // d3.selectAll(".country").each(function (d, i) {
+        //     // const countryName = d.properties.name;                
+        //     // console.log(this);
+        //     d3.select(this).classed("selected-top-10", true);
+        // });
+        findTopTenTrades();
     }
 
     countryOn(d){

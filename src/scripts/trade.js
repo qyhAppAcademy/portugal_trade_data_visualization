@@ -67,6 +67,7 @@ export function findTradesByAmountRange(range) {
         .then((response) => response.json())
         .then((json) => {
             const countries = d3.selectAll(".country").classed("selected-by-range", false);
+            // console.log(countries);
             json.Partner.forEach(trade => {
                 if (range[0] <= parseFloat(trade["Export (US$ Thousand)"]) 
                     && parseFloat(trade["Export (US$ Thousand)"]) <= range[1]) {
@@ -79,6 +80,29 @@ export function findTradesByAmountRange(range) {
                     });
                 }
             });
+        });
+}
+
+export function findTopTenTrades() {
+    fetch("./data/all_products.json")
+        .then((response) => response.json())
+        .then((json) => {
+            const trades = [];
+            json.Partner.forEach(trade => {
+                trades.push(trade);
+            });
+            trades.sort(function compareFn(a, b){
+                if (parseFloat(a["Export (US$ Thousand)"]) < parseFloat(b["Export (US$ Thousand)"])) {
+                    return -1;
+                }
+                else if (parseFloat(a["Export (US$ Thousand)"]) > parseFloat(b["Export (US$ Thousand)"])) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            console.log(trades);
         });
 }
 

@@ -16,6 +16,10 @@ svg {
   stroke-width: 0.5;
 }
 
+.selected-top-10 {
+  fill: gold;
+}
+
 .selected-by-range {
   fill: lightblue;
 }
