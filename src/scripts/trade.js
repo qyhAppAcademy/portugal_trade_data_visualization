@@ -83,7 +83,7 @@ export function findTradesByAmountRange(range) {
         });
 }
 
-export function findTopTenTrades() {
+export function findTopTenTradePartners() {
     fetch("./data/all_products.json")
         .then((response) => response.json())
         .then((json) => {
@@ -102,7 +102,18 @@ export function findTopTenTrades() {
                     return 0;
                 }
             });
-            console.log(trades);
+            // const countriesList = d3.selectAll(".country");
+            d3.selectAll(".country").each(function (d, i) {
+                const countryName = d.properties.name;
+                const topTenTradePartners = trades.slice(trades.length - 10).map(function (trade) {
+                        return trade["Partner Name"];
+                    })
+                if (topTenTradePartners.includes(countryName) || topTenTradePartners.some(function(name){
+                    return countryName.includes(name);
+                })) {
+                    d3.select(this).classed("selected-top-10", true);
+                }
+            });
         });
 }
 
@@ -127,11 +138,27 @@ export function getTradeAmountRange() {
     fetch("./data/all_products.json")
         .then((response) => response.json())
         .then((json) => {
-            let max = TOP_FIVE_AMOUNT;
+            // let max = TOP_FIVE_AMOUNT;
+            // json.Partner.forEach(trade => {
+            //     let amount = parseFloat(trade["Export (US$ Thousand)"]);
+            //     max = amount > max ? amount : max;
+            // });
+            const trades = [];
             json.Partner.forEach(trade => {
-                let amount = parseFloat(trade["Export (US$ Thousand)"]);
-                max = amount > max ? amount : max;
+                trades.push(parseFloat(trade["Export (US$ Thousand)"]));
             });
+            trades.sort(function compareFn(a, b) {
+                if (a < b) {
+                    return -1;
+                }
+                else if (a > b) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            // console.log(trades);
             // amounts.sort();
             // console.log(amounts);
             // const range = [
@@ -140,7 +167,9 @@ export function getTradeAmountRange() {
             //     amounts[Math.floor(2 * ((amounts.length - 1) / 4))], 
             //     amounts[Math.floor(3 * ((amounts.length - 1) / 4))],
             //     amounts[Math.floor(amounts.length - 1)]];
-            getSliderRange([0, TOP_FIVE_AMOUNT]);
+            // console.log(trades[trades.length - 10]);
+            // getSliderRange([0, trades[trades.length-10]]);
+            getSliderRange([0, Math.ceil(trades[trades.length - 10])]);
         });
 }
 

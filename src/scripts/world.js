@@ -1,4 +1,4 @@
-import { Trade, findTradesByProductGroup, findTopTenTrades } from "./trade.js";
+import { Trade, findTradesByProductGroup, findTopTenTradePartners } from "./trade.js";
 
 const TRADES = findTradesByProductGroup();
 
@@ -48,13 +48,7 @@ class World {
             //     d3.select(this).classed("selected", true);
             // });
             // .attr("fill", "#cccccc");
-        // const countriesList = d3.selectAll(".country");
-        // d3.selectAll(".country").each(function (d, i) {
-        //     // const countryName = d.properties.name;                
-        //     // console.log(this);
-        //     d3.select(this).classed("selected-top-10", true);
-        // });
-        findTopTenTrades();
+        findTopTenTradePartners();
     }
 
     countryOn(d){
