@@ -16,8 +16,34 @@ svg {
   stroke-width: 0.5;
 }
 
+.selected-by-range {
+  fill: lightblue;
+}
+
 .selected {
   fill: yellow;
+}
+
+#world-tooltip {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  padding: 0;
+  font: 15px sans-serif;
+  background-color: white;
+  pointer-events: none;
+  display: none;
+}
+
+ul {
+  padding: 0;
+  margin-top: -17px;
+  list-style: none;
+}
+
+li {
+  padding: 0;
+  margin: 0;
 }
 
 #main {

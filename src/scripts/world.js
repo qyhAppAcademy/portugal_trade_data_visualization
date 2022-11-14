@@ -16,6 +16,8 @@ class World {
             .scale(130);
         this.path = d3.geoPath().projection(this.projection);
         this.trades = findTradesByProductGroup();
+        this.tooltip_x = undefined;
+        this.tooltip_y = undefined;
     }
 
     render(){
@@ -25,15 +27,21 @@ class World {
 
     _render(world){
         let countries = topojson.feature(world, world.objects.countries).features;
-        console.log(countries);
         this.svg.selectAll(".country")
             .data(countries)
             .enter()
             .append("path")
             .attr("class", "country")
             .attr("d", this.path)
+            // .attr("data-country", function(d){
+            //     return d.properties.name;
+            // })
             .on('mouseover', this.countryOn)
-            .on('mouseout', this.countryOff);
+            .on('mousemove', this.mousemove.bind(this))
+            .on('mouseout', this.countryOff)
+            .each((country => {
+                console.log(country);
+            }));
             // .on("click", function(d){
             //     d3.select(this).classed("selected", true);
             // });
@@ -42,16 +50,26 @@ class World {
 
     countryOn(d){
         let countryName = d.properties.name;
-        console.log(countryName);
-        d3.select(this).classed("selected", true);
+        const countryElement = d3.select(this);
+        countryElement.classed("selected", true);
+        countryElement.style("display: block");
         for(let i=0; i<TRADES.length; i++){
             const trade = TRADES[i];
             if(trade.partner.includes(countryName) || countryName.includes(trade.partner)){
-                console.log(trade);
-                const htmlEle = document.querySelector("ul");
-                const li = document.createElement("li");
-                li.append(trade.partner);
-                htmlEle.appendChild(li);
+                // const htmlEle = document.querySelector("ul");
+                // const li = document.createElement("li");
+                // li.append(trade.partner);
+                // htmlEle.appendChild(li);
+                d3.select("#world-tooltip")
+                    .style("display", "inline")
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY) + "px")
+                    .insert("p")
+                    .classed("world-tooltip-content", true)
+                    
+                d3.select(".world-tooltip-content")
+                    .html(trade.toHTML());
+                // console.log(trade.toHTML());
                 break;
             }
         }
@@ -59,12 +77,24 @@ class World {
 
     countryOff(d){
         d3.select(this).classed("selected", false);
-        const htmlEle = document.querySelector("ul");
-        while(htmlEle.firstChild){
-            htmlEle.removeChild(htmlEle.firstChild);
-        }
+        // const htmlEle = document.querySelector("ul");
+        // while(htmlEle.firstChild){
+        //     htmlEle.removeChild(htmlEle.firstChild);
+        // }
+        // this.tooltip_x = undefined;
+        // this.tooltip_y = undefined;
+
+        d3.select("#world-tooltip").style("display", "none")
+        d3.selectAll(".world-tooltip-content").remove();
     }
     
+    mousemove(){
+        // if (this.tooltip_x === undefined){
+        //     this.tooltip_x = d3.event.pageX;
+        // }
+        // if (this.tooltip_y === undefined){
+        //     this.tooltip_y = d3.event.pageY;
+    }
 
     // render(){
     //     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')

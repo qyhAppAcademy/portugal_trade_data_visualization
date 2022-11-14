@@ -1,5 +1,6 @@
 import Globe from "./scripts/globe.js";
-import { Trade, findTradesByProductGroup } from "./scripts/trade.js";
+import { getTradeAmountRange } from "./scripts/trade.js";
+import { getSliderRange } from "./scripts/sliderRange.js";
 import World from "./scripts/world.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,4 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const world = new World();
     world.render();
+    getTradeAmountRange();
+    // getSliderRange(data);
+    // console.log(range);
 });
