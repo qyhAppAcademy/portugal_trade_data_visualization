@@ -1,14 +1,14 @@
 export function getBarChart() {
     // set the dimensions and margins of the graph
-    const margin = { top: 20, right: 30, bottom: 40, left: 90 },
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+    const margin = { top: 40, right: 40, bottom: 60, left: 100 };
+    const width = 800 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3.select("#bar-chart")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", 800)
+        .attr("height", 400)
         .append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
@@ -30,7 +30,7 @@ export function getBarChart() {
         const y = d3.scaleBand()
             .range([0, height])
             .domain(data.map(d => d.Country))
-            .padding(.1);
+            .padding(.2);
         svg.append("g")
             .call(d3.axisLeft(y))
 
