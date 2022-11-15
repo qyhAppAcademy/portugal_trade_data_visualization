@@ -3,11 +3,11 @@ export function getBarChart() {
     const width = 800;
 
     const x = d3.scaleLinear()
-            .domain([0, d3.max(data)])
+            .domain([0, d3.max(data, d => console.log(d))])
             .range([0, width]);
 
     const y = d3.scaleBand()
-            .domain(d3.range(data.length))
+            .domain(d3.map(d => d.name))
             .range([0, 20 * data.length]);
 
     const barChartSVG = d3.select("#bar-chart")
@@ -21,19 +21,19 @@ export function getBarChart() {
     const bar = barChartSVG.selectAll("g")
         .data(data)
         .join("g")
-            .attr("transform", (d, i) => `translate(0, ${y(i)})`);
+            .attr("transform", d => `translate(0, ${y(d.name)})`);
         
     bar.append("rect")
         .attr("fill", "steelblue")
-        .attr("width", x)
+        .attr("width", d => x(d.value))
         .attr("height", y.bandwidth() - 1);
 
     bar.append("text")
         .attr("fill", "white")
-        .attr("x", d => x(d) - 3)
+        .attr("x", d => x(d.value) - 3)
         .attr("y", (y.bandwidth() - 1) / 2)
         .attr("dy", "0.35em")
-        .text(d => d);
+        .text(d => d.value);
 
     // d3.select("#bar-chart")
     //     .data(data)
