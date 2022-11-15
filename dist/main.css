@@ -50,6 +50,12 @@ li {
   margin: 0;
 }
 
+#bar-chart {
+  font: 10px sans-serif;
+  text-align: right;
+  color: white;
+}
+
 #main {
   color: pink;
 }

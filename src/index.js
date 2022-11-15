@@ -2,6 +2,7 @@ import Globe from "./scripts/globe.js";
 import { getTradeAmountRange } from "./scripts/trade.js";
 import { getSliderRange } from "./scripts/sliderRange.js";
 import World from "./scripts/world.js";
+import { getBarChart } from "./scripts/barChart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     // npm run watch
@@ -44,4 +45,5 @@ document.addEventListener("DOMContentLoaded", () => {
     getTradeAmountRange();
     // getSliderRange(data);
     // console.log(range);
+    getBarChart();
 });
