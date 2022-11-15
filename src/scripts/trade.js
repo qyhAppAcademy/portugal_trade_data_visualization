@@ -16,20 +16,20 @@ class Trade {
 
     toHTML() {
         return `<ul>
-                    <li>Trade Product ${this.productGroup}</li>
+                    <li>${this.productGroup}</li>
+                    <li>In ${this.year}</li>
                     <li>${this.tradeFlow} ${this.tradeFlow === 'Export' ? 'to' : 'from'} ${this.partner}</li>
-                    <li>Year ${this.year}</li>
                     <li>Trade Amount $${this.amount}</li>
                 </ul>`
     }
 }
 
-function findTrades(url){
+export function findTrades(url){
     const result = [];
     fetch(url)
         .then((response) => response.json())
-        .then((json) => {
-            json.Partner.forEach(trade => {
+        .then((trades) => {
+            trades.Partner.forEach(trade => {
                 result.push(new Trade(
                     trade["Partner Name"],
                     trade["Year"],
@@ -116,6 +116,53 @@ export function findTopTenTradePartners() {
             });
         });
 }
+
+// export function sortTrades(comparator) {
+//     if (comparator === undefined) {
+//         comparator = function compareFn(a, b) {
+//             if (parseFloat(a["Export (US$ Thousand)"]) < parseFloat(b["Export (US$ Thousand)"])) {
+//                 return -1;
+//             }
+//             else if (parseFloat(a["Export (US$ Thousand)"]) > parseFloat(b["Export (US$ Thousand)"])) {
+//                 return 1;
+//             }
+//             else {
+//                 return 0;
+//             }
+//         }
+//     }
+//     fetch("./data/all_products.json")
+//         .then((response) => response.json())
+//         .then((json) => {
+//             const trades = [];
+//             json.Partner.forEach(trade => {
+//                 trades.push(trade);
+//             });
+//             trades.sort(function compareFn(a, b) {
+//                 if (parseFloat(a["Export (US$ Thousand)"]) < parseFloat(b["Export (US$ Thousand)"])) {
+//                     return -1;
+//                 }
+//                 else if (parseFloat(a["Export (US$ Thousand)"]) > parseFloat(b["Export (US$ Thousand)"])) {
+//                     return 1;
+//                 }
+//                 else {
+//                     return 0;
+//                 }
+//             });
+//             // const countriesList = d3.selectAll(".country");
+//             d3.selectAll(".country").each(function (d, i) {
+//                 const countryName = d.properties.name;
+//                 const topTenTradePartners = trades.slice(trades.length - 10).map(function (trade) {
+//                     return trade["Partner Name"];
+//                 })
+//                 if (topTenTradePartners.includes(countryName) || topTenTradePartners.some(function (name) {
+//                     return countryName.includes(name);
+//                 })) {
+//                     d3.select(this).classed("selected-top-10", true);
+//                 }
+//             });
+//         });
+// }
 
 export function getTradeAmountRange() {
     // findTrades("./data/all_products.json", (trades) => {

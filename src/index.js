@@ -1,10 +1,21 @@
-import Globe from "./scripts/globe.js";
+import World from "./scripts/world.js";
 import { getTradeAmountRange } from "./scripts/trade.js";
 import { getSliderRange } from "./scripts/sliderRange.js";
-import World from "./scripts/world.js";
 import { getBarChart } from "./scripts/barChart.js";
+import Globe from "./scripts/globe.js";
+
+const WORLD_MAP_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 document.addEventListener("DOMContentLoaded", () => {
+    const world = new World(WORLD_MAP_URL);
+    world.render();
+    getTradeAmountRange();
+    // getSliderRange(data);
+    // console.log(range);
+    // getBarChart();
+});
+
+// function comments() {
     // npm run watch
     // const main = document.getElementById("main");
     // new Example(main);
@@ -39,11 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
     //             .attr('class', 'country')
     //             .attr('d', path);
     //     });
-
-    const world = new World();
-    world.render();
-    getTradeAmountRange();
-    // getSliderRange(data);
-    // console.log(range);
-    // getBarChart();
-});
+// }

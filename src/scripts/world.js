@@ -1,115 +1,92 @@
-import { Trade, findTradesByProductGroup, findTopTenTradePartners } from "./trade.js";
+import { Trade, findTrades, findTradesByProductGroup, findTopTenTradePartners } from "./trade.js";
 
-const TRADES = findTradesByProductGroup();
+const TRADES_URL = "../../data/all_products.json";
+
+const TRADES = findTrades(TRADES_URL);
 
 class World {
-    constructor() {
+    constructor(url) {
+        this.url = url;
         this.width = 800;
         this.height = 533;
+
         this.svg = d3.select('#world')
             .append('svg')
             .attr('width', this.width)
             .attr('height', this.height)
             .append("g");
+
         this.projection = d3.geoMercator()
             .translate([this.width/2, this.height/1.5])
             .scale(130);
+
         this.path = d3.geoPath().projection(this.projection);
-        this.trades = findTradesByProductGroup();
-        this.tooltip_x = undefined;
-        this.tooltip_y = undefined;
+
+        this.trades = findTrades(TRADES_URL);
     }
 
     render(){
-        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-            .then(this._render.bind(this));
+        d3.json(this.url)
+            .then((world) => {
+                let countries = topojson.feature(world, world.objects.countries).features;
+                let that = this;
+                this.svg.selectAll(".country")
+                    .data(countries)
+                    .enter()
+                    .append("path")
+                    .attr("class", "country")
+                    .attr("d", this.path)
+                    .on('mouseover', function(country) {
+                        that.mouseOverCountry(country, that.trades);
+                    })
+                    .on('mouseout', this.mouseOutCountry)
+                    // .on('mousemove', this.mousemove.bind(this))
+
+                    findTopTenTradePartners();
+            });
     }
 
-    _render(world){
-        let countries = topojson.feature(world, world.objects.countries).features;
-        this.svg.selectAll(".country")
-            .data(countries)
-            .enter()
-            .append("path")
-            .attr("class", "country")
-            .attr("d", this.path)
-            // .attr("data-country", function(d){
-            //     return d.properties.name;
-            // })
-            .on('mouseover', this.countryOn)
-            .on('mousemove', this.mousemove.bind(this))
-            .on('mouseout', this.countryOff)
-            // .each(function (d, i) {
-            //     // const countryName = d.properties.name;                
-            //     // console.log(this);
-            //     d3.select(this).classed("selected-top-10", true);
-            // });
-            // .on("click", function(d){
-            //     d3.select(this).classed("selected", true);
-            // });
-            // .attr("fill", "#cccccc");
-        findTopTenTradePartners();
-    }
+    mouseOverCountry(country, trades){
+        console.log(this);
+        debugger
+        d3.select(this)
+            .classed("mouseover", true)
+            .style("display: block");
 
-    countryOn(d){
-        let countryName = d.properties.name;
-        const countryElement = d3.select(this);
-        countryElement.classed("selected", true);
-        countryElement.style("display: block");
-        for(let i=0; i<TRADES.length; i++){
-            const trade = TRADES[i];
-            if(trade.partner.includes(countryName) || countryName.includes(trade.partner)){
-                // const htmlEle = document.querySelector("ul");
-                // const li = document.createElement("li");
-                // li.append(trade.partner);
-                // htmlEle.appendChild(li);
+        const name = country.properties.name;
+
+        for (let i = 0; i < trades.length; i++) {
+            const trade = trades[i];
+            if (trade.partner.includes(name) || name.includes(trade.partner)) {
                 d3.select("#world-tooltip")
                     .style("display", "inline")
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY) + "px")
-                    .insert("p")
-                    .classed("world-tooltip-content", true)
-                    
+                    .insert("div")
+                    .classed("world-tooltip-content", true);
+
                 d3.select(".world-tooltip-content")
                     .html(trade.toHTML());
-                // console.log(trade.toHTML());
+
                 break;
             }
         }
     }
 
-    countryOff(d){
-        d3.select(this).classed("selected", false);
-        // const htmlEle = document.querySelector("ul");
-        // while(htmlEle.firstChild){
-        //     htmlEle.removeChild(htmlEle.firstChild);
-        // }
-        // this.tooltip_x = undefined;
-        // this.tooltip_y = undefined;
+    mouseOutCountry(){
+        d3.select(this)
+            .classed("mouseover", false)
+            .style("display: none");
 
-        d3.select("#world-tooltip").style("display", "none")
+        d3.select("#world-tooltip")
+            .style("display", "none");
+
         d3.selectAll(".world-tooltip-content").remove();
     }
     
     mousemove(){
-        // if (this.tooltip_x === undefined){
-        //     this.tooltip_x = d3.event.pageX;
-        // }
-        // if (this.tooltip_y === undefined){
-        //     this.tooltip_y = d3.event.pageY;
-    }
 
-    // render(){
-    //     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-    //         .then(world => {
-    //             const countries = topojson.feature(world, world.objects.countries);
-    //             g.selectAll('path')
-    //                 .data(countries.features)
-    //                 .enter().append('path')
-    //                 .attr('class', 'country')
-    //                 .attr('d', path);
-    //         });
-    // }
+    }
 }
 
 export default World;
