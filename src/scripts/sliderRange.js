@@ -1,3 +1,4 @@
+import { getBarChart } from "./barChart.js";
 import { Trade, findTradesByProductGroup, findTradesByAmountRange } from "./trade.js";
 
 export function getSliderRange(data){
@@ -13,7 +14,9 @@ export function getSliderRange(data){
         .on('onchange', val => {
             // console.log(val);
             // d3.select('p#value-range').text(val.map(d3.format('')).join('-'));
+            console.log(val);
             findTradesByAmountRange(val);
+            getBarChart(val);
         });
 
     let gRange = d3

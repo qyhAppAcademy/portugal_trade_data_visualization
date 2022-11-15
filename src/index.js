@@ -45,5 +45,5 @@ document.addEventListener("DOMContentLoaded", () => {
     getTradeAmountRange();
     // getSliderRange(data);
     // console.log(range);
-    getBarChart();
+    // getBarChart();
 });
