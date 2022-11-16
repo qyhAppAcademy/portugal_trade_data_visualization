@@ -4,7 +4,7 @@ import RangeSlider from "./rangeSlider.js";
 const WIDTH = 900;
 const HEIGHT = 600;
 const WORLD_MAP_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
-const TRADES_URL = "../../data/all_products.json";
+const TRADES_URL = "../data/all_products.json";
 
 class World {
     constructor() {
