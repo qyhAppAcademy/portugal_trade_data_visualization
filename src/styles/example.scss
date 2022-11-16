@@ -1,9 +1,111 @@
-$color: purple;
+ul {
+    padding: 0;
+    margin: 0;
 
-#main > h1 {
-    border: 4px solid $color;
-    padding: 20px;
+    list-style: none;
 }
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'proxima-nova', sans-serif;
+}
+
+svg {
+    display: block;
+
+    padding: 0;
+    margin: 0 auto;
+
+    background: transparent;
+}
+
+#world-tooltip {
+    display: none;
+
+    position: absolute;
+
+    padding: 0;
+    margin: 0;
+
+    font-size: 16px;
+    font-family: 'proxima-nova', sans-serif;
+
+    background-color: white;
+
+    pointer-events: none;
+}
+
+.country {
+    fill: #cccccc;
+    stroke: #363636;
+    stroke-width: 0.6;
+}
+
+.origin {
+    fill: #ff7698;
+}
+
+.selected-top-10 {
+    fill: #9876ff;
+}
+
+.selected-by-range {
+    fill: #76bbff;
+}
+
+.mouseover {
+    fill: #ffed76;
+}
+
+#color-guide {
+    display: flex;
+    justify-self: space-evenly;
+
+    margin: 0 auto;
+
+    width: 900px;
+}
+
+#color-guide li {
+    display: inline;
+
+    margin: 0 auto;
+}
+
+#color-guide li div{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin: 0 6px -4px 0;
+}
+
+#color-guide li span {
+    font-size: 15px;
+    font-family: 'proxima-nova', sans-serif;
+}
+
+#range-slider {
+    padding: 10px 0 0 0;
+}
+
+#bar-chart {
+    font-size: 18px;
+    font-family: 'proxima-nova', sans-serif;
+    // font: 15px sans-serif;
+    color: black;
+}
+
+// $color: purple;
+
+// #main>h1 {
+//     border: 4px solid $color;
+//     padding: 20px;
+// }
 
 // body {
 //     background: #fcfcfa;
@@ -35,90 +137,3 @@ $color: purple;
 //     stroke: #fff;
 //     stroke-width: .5px;
 // }
-h1 {
-    text-align: center;
-    font-family: Verdana, sans-serif;
-}
-
-svg {
-    display: block;
-    padding: 0;
-    margin: 0 auto;
-    background: transparent;
-}
-
-.country {
-    fill: #cccccc;
-    stroke: #999;
-    stroke-width: 0.6;
-}
-
-.origin {
-    fill: #ff7698;
-}
-
-.selected-top-10 {
-    fill: #9876ff;
-}
-.selected-by-range {
-    fill: #76bbff;
-}
-
-.mouseover {
-    fill: #ffed76;
-}
-
-#world-tooltip {
-    position: absolute;
-
-    padding: 0;
-    margin: 0;
-
-    font: 16px sans-serif;
-
-    background-color: white;
-
-    pointer-events: none;
-
-    display: none;
-
-    // width: 200px;
-    // height: 80px;
-    // text-align: center;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-li {
-    padding: 0;
-    margin: 0;
-}
-
-#color-guide {
-    display: flex;
-    justify-self: space-evenly;
-    margin: 0 auto;
-    padding: 0 100px;
-    width: 800px;
-}
-
-#color-guide li {
-    display: inline;
-    margin: 0 auto;
-}
-
-#color-guide li div{
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    margin: 0 6px -4px 0;
-}
-
-#bar-chart {
-    font: 10px sans-serif;
-    color: black;
-}

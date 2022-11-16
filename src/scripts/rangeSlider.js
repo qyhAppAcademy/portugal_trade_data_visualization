@@ -1,7 +1,7 @@
 import BarChart from "./barChart.js";
 
-const SLIDER_WIDTH = 735;
-const SLIDER_COLOR = '#98bfe6';
+const SLIDER_WIDTH = 750;
+const SLIDER_COLOR = '#5c9946';
 
 const CONTAINER_WIDTH = 800;
 const CONTAINER_HEIGHT = 80;
@@ -54,7 +54,7 @@ class RangeSlider {
         d3.select('p#value-range').text(
             this.slider
                 .value()
-                .map(d3.format('.2'))
+                .map(d3.format(',.0f'))
                 .join('-')
         );
     }

@@ -22,8 +22,6 @@ class BarChart{
             .attr("height", HEIGHT)
             .append("g")
             .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`)
-            .attr("font-family", "sans-serif")
-            .style("font-size", "1.2em");
 
         this.range = range;
 
@@ -63,8 +61,7 @@ class BarChart{
             .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-45)")
             .style("text-anchor", "end")
-            .attr("font-family", "sans-serif")
-            .style("font-size", "1.2em");
+            .style("font-size", "13px");
 
         // Y axis
         const y = d3.scaleBand()
@@ -74,8 +71,7 @@ class BarChart{
 
         this.svg.append("g")
             .call(d3.axisLeft(y))
-            .attr("font-family", "sans-serif")
-            .style("font-size", "1em");
+            .style("font-size", "15px");
 
         // Bars with animation
         this.svg.selectAll("myRect")
@@ -91,7 +87,7 @@ class BarChart{
             .attr("height", y.bandwidth())
             .attr("fill", BAR_COLOR);
         
-        // Label
+        // Chart Label
         this.svg.append('text')
             .attr('x', this.width / 2)
             .attr('y', this.height + 70)

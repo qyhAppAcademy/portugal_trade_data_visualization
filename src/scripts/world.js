@@ -85,8 +85,6 @@ class World {
     }
 
     mouseOutCountry(country, context){
-        // console.log(country);
-
         d3.select(context)
             .classed("mouseover", false)
             .style("display: none");
