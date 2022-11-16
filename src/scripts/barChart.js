@@ -1,5 +1,5 @@
-const WIDTH = 1000;
-const HEIGHT = 500;
+const WIDTH = 900;
+const HEIGHT = 450;
 const BAR_COLOR = "#ffa876";
 
 class BarChart{

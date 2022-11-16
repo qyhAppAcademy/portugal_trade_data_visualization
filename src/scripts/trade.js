@@ -15,7 +15,7 @@ class Trade {
                     <li>${this.productGroup}</li>
                     <li>In ${this.year}</li>
                     <li>${this.tradeFlow} ${this.tradeFlow === 'Export' ? 'to' : 'from'} ${this.partner}</li>
-                    <li>Trade Amount $${this.amount}</li>
+                    <li>Trade Amount $${(this.amount * 1000).toLocaleString("en-US")}</li>
                 </ul>`;
     }
 }

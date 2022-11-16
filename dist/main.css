@@ -29,9 +29,13 @@ svg {
   position: absolute;
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "proxima-nova", sans-serif;
   background-color: white;
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 5px;
   pointer-events: none;
 }
 
@@ -65,7 +69,7 @@ svg {
   display: flex;
   justify-self: space-evenly;
   margin: 0 auto;
-  width: 900px;
+  width: 1300px;
 }
 
 #color-guide li {
@@ -81,12 +85,13 @@ svg {
 }
 
 #color-guide li span {
-  font-size: 15px;
+  font-size: 13px;
   font-family: "proxima-nova", sans-serif;
 }
 
 #range-slider {
-  padding: 10px 0 0 0;
+  padding: 0;
+  margin: 0;
 }
 
 #bar-chart {

@@ -1,10 +1,10 @@
 import BarChart from "./barChart.js";
 
-const SLIDER_WIDTH = 750;
+const SLIDER_WIDTH = 850;
 const SLIDER_COLOR = '#5c9946';
 
-const CONTAINER_WIDTH = 800;
-const CONTAINER_HEIGHT = 80;
+const CONTAINER_WIDTH = 900;
+const CONTAINER_HEIGHT = 90;
 
 class RangeSlider {
     constructor(trades){
@@ -60,20 +60,26 @@ class RangeSlider {
     }
 
     _renderTradePartnersWithinRange(){
-        const countries = d3.selectAll(".country").classed("selected-by-range", false);
+        d3.selectAll(".country").classed("selected-by-range-top-10", false);
+        d3.selectAll(".country").classed("selected-by-range", false);
+        const countries = d3.selectAll(".country");
         const selected = [];
         this.trades.forEach(trade => {
             if (this.range[0] <= trade.amount && trade.amount <= this.range[1]) {
                 countries.each(function(country, i) {
                     const name = country.properties.name;
-                    if (trade.partner.includes(name) || name.includes(trade.partner)) {
+                    if (trade.partner === name) {
                         selected.push(this);
                     }
                 });
             }
         });
         selected.forEach((el, idx) => {
-            d3.select(el).classed("selected-by-range", true);
+            if (idx < 10){
+                d3.select(el).classed("selected-by-range-top-10", true);
+            }else{
+                d3.select(el).classed("selected-by-range", true);
+            }
         });
     }
 }

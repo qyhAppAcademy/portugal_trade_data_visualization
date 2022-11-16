@@ -19,13 +19,15 @@ class World {
 
         this.projection = d3.geoMercator()
             .translate([this.width / 2, this.height / 1.5])
-            .scale(143);
+            .scale(144);
 
         this.path = d3.geoPath().projection(this.projection);
 
         this.worldMap = this._fetchWorldMap();
 
         this.trades = this._fetchTrades();
+        
+        console.log(this.trades);
     }
 
     render(){
@@ -45,10 +47,12 @@ class World {
                         .on('mouseover', function (country) {
                             that.mouseOverCountry(country, this, trades);
                         })
+                        .on('mousemove', function (country) {
+                            that.mouseMove(country, this);
+                        })
                         .on('mouseout', function (country) {
                             that.mouseOutCountry(country, this);
                         });
-                        // .on('mousemove', this.mousemove.bind(this))
 
                     const top10TradePartners = trades.slice(0, 10).map(trade => trade.partner);
                     that._renderTradePartners(top10TradePartners);
@@ -68,11 +72,11 @@ class World {
 
         for (let i = 0; i < trades.length; i++) {
             const trade = trades[i];
-            if (trade.partner.includes(name) || name.includes(trade.partner)) {
+            if (trade.partner === name) {
                 d3.select("#world-tooltip")
                     .style("display", "inline")
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY) + "px")
+                    // .style("left", (d3.event.pageX) + "px")
+                    // .style("top", (d3.event.pageY) + "px")
                     .insert("div")
                     .classed("world-tooltip-content", true);
 
@@ -95,8 +99,10 @@ class World {
         d3.selectAll(".world-tooltip-content").remove();
     }
     
-    mousemove(){
-
+    mouseMove(country, context){
+        d3.select("#world-tooltip")
+            .style("left", (d3.mouse(context)[0] + 270) + "px")
+            .style("top", (d3.mouse(context)[1] + 90) + "px");
     }
 
     async _fetchWorldMap() {
@@ -106,26 +112,42 @@ class World {
     async _fetchTrades() {
         const trades = await d3.json(TRADES_URL);
         const result = [];
-        trades.Partner.forEach(trade => {
-            result.push(new Trade(
-                trade["Partner Name"],
-                trade["Year"],
-                trade["Trade Flow"],
-                trade["Product Group"],
-                trade["Export (US$ Thousand)"]));
+        return this.worldMap.then((world) => {
+            let countries = topojson
+                                .feature(world, world.objects.countries)
+                                .features
+                                .map((feature)=>{
+                                    return feature.properties.name;
+                                });
+            trades.Partner.forEach(trade => {
+                const partner = trade["Partner Name"].trim();
+                const matchedPartner = countries.find((country) => {
+                    if(country.includes(partner) || partner.includes(country)){
+                        return country;
+                    }
+                });
+                if (matchedPartner !== undefined){
+                    result.push(new Trade(
+                        matchedPartner,
+                        trade["Year"],
+                        trade["Trade Flow"],
+                        trade["Product Group"],
+                        trade["Export (US$ Thousand)"]));
+                }
+            });
+            result.sort(function (left, right) {
+                if (left.amount < right.amount) {
+                    return 1;
+                }
+                else if (left.amount > right.amount) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return result;
         });
-        result.sort(function (left, right) {
-            if (left.amount < right.amount) {
-                return 1;
-            }
-            else if (left.amount > right.amount) {
-                return -1;
-            }
-            else {
-                return 0;
-            }
-        });
-        return result;
     }
 
     _renderTradePartners(partners) {
@@ -133,7 +155,7 @@ class World {
             .each(function (country, i) {
                 const name = country.properties.name;
                 if (partners.some(function (partner) {
-                    return partner.includes(name) || name.includes(partner);
+                    return partner === name;
                 })) {
                     d3.select(this).classed("selected-top-10", true);
                 }
