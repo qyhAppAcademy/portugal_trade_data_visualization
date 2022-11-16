@@ -4,7 +4,7 @@ const EXPORT_URL = "https://qyhappacademy.github.io/portugal_trade_data_visualiz
 const IMPORT_URL = "https://qyhappacademy.github.io/portugal_trade_data_visualization/data/imports.json";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const world = new World(EXPORT_URL);
+    const world = new World(IMPORT_URL);
     world.render();
 
     const toggleBtn = document.getElementById("import-export-button");

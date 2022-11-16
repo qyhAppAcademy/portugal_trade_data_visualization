@@ -1,16 +1,16 @@
 import BarChart from "./barChart.js";
 
-const SLIDER_WIDTH = 850;
+const SLIDER_WIDTH = 935;
 const SLIDER_COLOR = '#5c9946';
 
-const CONTAINER_WIDTH = 900;
+const CONTAINER_WIDTH = 1000;
 const CONTAINER_HEIGHT = 90;
 
 class RangeSlider {
     constructor(trades){
         this.trades = trades;
 
-        const top10thTradeAmount = Math.floor(this.trades[9].amount);
+        const top10thTradeAmount = Math.ceil(this.trades[10].amount);
         
         this.range = [0, top10thTradeAmount];
 
