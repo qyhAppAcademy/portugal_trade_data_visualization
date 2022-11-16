@@ -50,6 +50,10 @@ svg {
     fill: #ff7698;
 }
 
+.mouseover {
+    fill: #ffed76;
+}
+
 .selected-top-10 {
     fill: #9876ff;
 }
@@ -58,8 +62,8 @@ svg {
     fill: #76bbff;
 }
 
-.mouseover {
-    fill: #ffed76;
+.selected-by-range-top-10 {
+    fill: #ffa876;
 }
 
 #color-guide {
@@ -96,7 +100,6 @@ svg {
 #bar-chart {
     font-size: 18px;
     font-family: 'proxima-nova', sans-serif;
-    // font: 15px sans-serif;
     color: black;
 }
 

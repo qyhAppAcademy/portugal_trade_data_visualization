@@ -61,15 +61,19 @@ class RangeSlider {
 
     _renderTradePartnersWithinRange(){
         const countries = d3.selectAll(".country").classed("selected-by-range", false);
+        const selected = [];
         this.trades.forEach(trade => {
             if (this.range[0] <= trade.amount && trade.amount <= this.range[1]) {
                 countries.each(function(country, i) {
                     const name = country.properties.name;
                     if (trade.partner.includes(name) || name.includes(trade.partner)) {
-                        d3.select(this).classed("selected-by-range", true);
+                        selected.push(this);
                     }
                 });
             }
+        });
+        selected.forEach((el, idx) => {
+            d3.select(el).classed("selected-by-range", true);
         });
     }
 }
