@@ -1,4 +1,4 @@
-import Trade from "./trade.js";
+import Trade, { getOrigin } from "./trade.js";
 import RangeSlider from "./rangeSlider.js";
 
 const WIDTH = 900;
@@ -138,6 +138,9 @@ class World {
                     return partner.includes(name) || name.includes(partner);
                 })) {
                     d3.select(this).classed("selected-top-10", true);
+                }
+                if (name === getOrigin()){
+                    d3.select(this).classed("origin", true);
                 }
             });
     }

@@ -20,4 +20,8 @@ class Trade {
     }
 }
 
+export function getOrigin(){
+    return ORIGIN;
+}
+
 export default Trade;
