@@ -7,7 +7,8 @@ const WORLD_MAP_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m
 const TRADES_URL = "https://qyhappacademy.github.io/portugal_trade_data_visualization/data/all_products.json";
 
 class World {
-    constructor() {
+    constructor(tradeURL) {
+        this.tradeURL = tradeURL;
         this.width = WIDTH;
         this.height = HEIGHT;
 
@@ -110,7 +111,7 @@ class World {
     }
 
     async _fetchTrades() {
-        const trades = await d3.json(TRADES_URL);
+        const trades = await d3.json(this.tradeURL);
         const result = [];
         return this.worldMap.then((world) => {
             let countries = topojson
@@ -127,12 +128,13 @@ class World {
                     }
                 });
                 if (matchedPartner !== undefined){
+                    let tradeAmount = trade["Export (US$ Thousand)"] || trade["Import (US$ Thousand)"];
                     result.push(new Trade(
                         matchedPartner,
                         trade["Year"],
                         trade["Trade Flow"],
                         trade["Product Group"],
-                        trade["Export (US$ Thousand)"]));
+                        tradeAmount));
                 }
             });
             result.sort(function (left, right) {

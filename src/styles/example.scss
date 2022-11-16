@@ -15,6 +15,18 @@ h1 {
     font-family: 'proxima-nova', sans-serif;
 }
 
+#import-export-button {
+    display: inline;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+#import-export-button img{
+    width: auto; 
+    height: 40px;
+}
+
 svg {
     display: block;
 
