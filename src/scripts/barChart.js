@@ -1,6 +1,6 @@
 const WIDTH = 1000;
-const HEIGHT = 450;
-const BAR_COLOR = "#15A4C2";
+const HEIGHT = 500;
+const BAR_COLOR = "#ffa876";
 
 class BarChart{
     constructor(trades, range){

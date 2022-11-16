@@ -37,10 +37,12 @@ $color: purple;
 // }
 h1 {
     text-align: center;
+    font-family: Verdana, sans-serif;
 }
 
 svg {
     display: block;
+    padding: 0;
     margin: 0 auto;
     background: transparent;
 }
@@ -48,22 +50,22 @@ svg {
 .country {
     fill: #cccccc;
     stroke: #999;
-    stroke-width: 0.5;
+    stroke-width: 0.6;
 }
 
 .origin-country {
-    fill: maroon;
+    fill: #ff7698;
 }
 
 .selected-top-10 {
-    fill: lightgreen;
+    fill: #9876ff;
 }
 .selected-by-range {
-    fill: lightblue;
+    fill: #76bbff;
 }
 
 .mouseover {
-    fill: yellow;
+    fill: #ffed76;
 }
 
 #world-tooltip {

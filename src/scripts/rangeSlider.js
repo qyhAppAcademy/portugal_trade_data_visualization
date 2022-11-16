@@ -1,7 +1,7 @@
 import BarChart from "./barChart.js";
 
 const SLIDER_WIDTH = 735;
-const SLIDER_COLOR = '#2196f3';
+const SLIDER_COLOR = '#98bfe6';
 
 const CONTAINER_WIDTH = 800;
 const CONTAINER_HEIGHT = 80;
@@ -22,9 +22,14 @@ class RangeSlider {
             .min(d3.min(this.range))
             .max(d3.max(this.range))
             .width(SLIDER_WIDTH)
-            .tickFormat(d3.format(''))
-            .ticks(5)
+            .tickFormat(d3.format(',.0f'))
+            .ticks(10)
             .default([this.range[0], this.range[1]])
+            .handle(
+                d3.symbol()
+                    .type(d3.symbolCircle)
+                    .size(200)
+            )
             .fill(SLIDER_COLOR)
             .on('onchange', function(range){
                 that.range = range;
