@@ -1,18 +1,9 @@
 import World from "./scripts/world.js";
-import { getTradeAmountRange } from "./scripts/trade.js";
-import { getSliderRange } from "./scripts/sliderRange.js";
-import { getBarChart } from "./scripts/barChart.js";
-import Globe from "./scripts/globe.js";
-
-const WORLD_MAP_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+// import Globe from "./scripts/globe.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const world = new World(WORLD_MAP_URL);
+    const world = new World();
     world.render();
-    getTradeAmountRange();
-    // getSliderRange(data);
-    // console.log(range);
-    // getBarChart();
 });
 
 // function comments() {

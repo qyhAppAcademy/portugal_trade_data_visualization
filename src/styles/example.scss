@@ -35,15 +35,24 @@ $color: purple;
 //     stroke: #fff;
 //     stroke-width: .5px;
 // }
+h1 {
+    text-align: center;
+}
 
 svg {
-    background: #f1f1f1;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
 }
 
 .country {
     fill: #cccccc;
     stroke: #999;
     stroke-width: 0.5;
+}
+
+.origin-country {
+    fill: maroon;
 }
 
 .selected-top-10 {
@@ -68,7 +77,7 @@ svg {
     background-color: white;
 
     pointer-events: none;
-    
+
     display: none;
 
     // width: 200px;
