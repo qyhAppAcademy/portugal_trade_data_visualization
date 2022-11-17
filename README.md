@@ -1,47 +1,47 @@
 # Portugal Trade Data Visualization
 
-[Portugal Trade Data Visualization](https://qyhappacademy.github.io/portugal_trade_data_visualization/) is a data visualization of Portugal import and export trades. It displays every nation Portugal trades with on a global map. Users are able to interact with the map to get an in-depth look into the trade data. This project is inspired by the history of Portugal being a strong trading nation since the Age of Discovery.
+[Portugal Trade Data Visualization](https://qyhappacademy.github.io/portugal_trade_data_visualization/) is a data visualization of Portugal import and export trades. It displays every nation Portugal trades with on a global map. Users are able to interact with the map to get an in-depth look into the trade data. This project is inspired by the history of Portugal being a strong trade nation since the Age of Discovery.
 
 
 ## <a name="wireframes"></a> Wireframes
 
 ![alt text](https://github.com/qyhAppAcademy/portugal_trade_data_visualization/blob/main/wireframe.png)
 
-    * At the top, a world map on which users can interact with, and view trade partners of Portugal.
+* At the top, a world map on which users can interact with, and view trade partners of Portugal.
 
-    * In the middle, a range slider for users to filter trade partners to render on the map and in the bar chart.
+* In the middle, a range slider for users to filter trade partners to render on the map and in the bar chart.
 
-    * At the bottom, a bar chart for users to see the trade value of each trade partner.
+* At the bottom, a bar chart for users to see the trade value of each trade partner.
 
 
 ## <a name="functionality"></a> Functionality & MVPs
 
 ### With this Portugal Trade Data Visualization App, users will be able to:
 
-    - [x] Browse individual trade partner of Portugal on the map
+- [x] Browse individual trade partner of Portugal on the map
 
-    - [x] Filter trade partners to display based on trade value
+- [x] Filter trade partners to display based on trade value
 
-    - [x] View comparisons of trade value among trade partners
+- [x] View comparisons of trade value among trade partners
 
-    - [x] Toggle between imports data and exports data
+- [x] Toggle between imports data and exports data
 
 
 ## <a name="technologies"></a> Technologies, Libraries, APIs
 
 ### This project uses the following technologies:
 
-    * `HTML` to structure the app
+* `HTML` to structure the app
 
-    * `SCSS` to style
+* `SCSS` to style
 
-    * `JavaScript` to implement application logic, fetch data, create animations, and add interactivity
+* `JavaScript` to implement application logic, fetch data, create animations, and add interactivity
 
-    * `D3.js` to display a world map, a range slider, and a bar chart
+* `D3.js` to display a world map, a range slider, and a bar chart
 
-    * `Webpack` to bundle and transpile the source JavaScript code
+* `Webpack` to bundle and transpile the source JavaScript code
 
-    * `NPM` to manage project dependencies
+* `NPM` to manage project dependencies
 
 * Trade data is first fetched using d3.json. After the promise is fulfilled, data then is processed into trade objects and pushed into an array. Afterwards, that array is sorted and returned.
 
@@ -173,26 +173,26 @@
 
 ## <a name="implementation-timeline"></a> Implementation Timeline
 
-    * Friday & Weekend: Setup project, getting webpack up and running. Get the world map to display on the screen, and spend time getting comfortable with d3.js.
+* Friday & Weekend: Setup project, getting webpack up and running. Get the world map to display on the screen, and spend time getting comfortable with d3.js.
 
-    * Monday: Create a browsing functionality on the world map to enable users to view each trade partner’s data in detail.
+* Monday: Create a browsing functionality on the world map to enable users to view each trade partner’s data in detail.
 
-    * Tuesday: Create a range slider for users to filter trade partners on the map, based on trade value.
+* Tuesday: Create a range slider for users to filter trade partners on the map, based on trade value.
 
-    * Wednesday: Create a bar chart for users to view the percentage of each partner’s trade data.
+* Wednesday: Create a bar chart for users to view the percentage of each partner’s trade data.
 
-    * Thursday Morning: Deploy to Github pages.
+* Thursday Morning: Deploy to Github pages.
 
 
 ## <a name="future-implementations"></a> Future Implementations:
 
-    * Add more statistical analysis on trades.
+* Add more statistical analysis on trades.
 
-    * Use a 3D globe to display trade nations.
+* Use a 3D globe to display trade nations.
 
-    * Display major trade routes that Portugal uses on the globe.
+* Display major trade routes that Portugal uses on the globe.
 
 
 ## <a name="licensing"></a> CC Licensing:
 
-    * Portugal Trade Data from World Integrated Trade Solution(https://wits.worldbank.org/).
+* Portugal Trade Data from World Integrated Trade Solution(https://wits.worldbank.org/).
