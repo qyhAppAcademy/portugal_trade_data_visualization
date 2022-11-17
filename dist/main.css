@@ -118,6 +118,12 @@ nav {
   align-items: center;
 }
 
+.button-li {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
 .logo-li {
   padding: 0;
   margin: 0;
@@ -165,6 +171,58 @@ nav div {
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.4s ease 0s;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 20% from the top and centered */
+  padding: 18px;
+  border: 3px solid #cccccc;
+  border-radius: 12px;
+  width: 50%;
+  /* Could be more or less, depending on screen size */
+  text-align: center;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 500;
+}
+
+/* The Close Button */
+.close {
+  color: #cccccc;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #main {

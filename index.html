@@ -27,7 +27,22 @@
     <!-- <canvas id="globe"></canvas>
     <ul></ul> -->
     <nav>
-        <div id="toggle-trade-button" class="container-name"><a class="example_b" href="#" target="_blank" rel="nofollow"><span>To Exports</span></a></div>
+        <ul class="buttons-bar">
+            <li class="button-li">
+                <div id="toggle-trade-button" class="container-name">
+                    <a class="example_b" href="#" target="_blank" rel="nofollow">
+                        <span>To Exports</span>
+                    </a>
+                </div>
+            </li>
+            <li class="button-li">
+                <div id="user-guide-button" class="container-name">
+                    <a class="example_b" href="#" target="_blank" rel="nofollow">
+                        <span>User Guide</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
         <ul class="logos-bar">
             <li class="logo-li">
                 <a href="https://github.com/qyhAppAcademy">
@@ -66,6 +81,26 @@
     </ul>
     <div id="range-slider"></div>
     <div id="bar-chart"></div>
+
+    <div id="user-guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>User Guide</h3>
+            <p>Hover over the specific country to view its trade data with Portugal</p>
+            <p>Use the slider to specify a trade amount range to filter trade partners within that range</p>
+            <p>The range slider is bounded by the trade amount of the 11th largest trade partner out of all the countries</p>
+            <p>Bar chart displays the top 10 largest trade partners within the trade amount range user specifies</p>
+            
+            <h3>Project Inspiration</h3>
+            <p>
+                Portugal has taken a great role in global trade since <a href="https://en.wikipedia.org/wiki/Age_of_Discovery">the Age of Discovery</a>.
+            </p>
+            <p>
+                The purpose of this project is to visualize Portugal's Geoeconomic influence in the world.
+            </p>
+        </div>
+    
+    </div>
 </body>
 
 </html>
