@@ -16,7 +16,7 @@
 
 ## <a name="functionality"></a> Functionality & MVPs
 
-### With this Portugal Trade Data Visualization App, users will be able to:
+### With this Portugal Trade Data Visualization App, users are able to:
 
 - [x] Browse individual trade partner of Portugal on the map
 
