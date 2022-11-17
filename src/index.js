@@ -7,16 +7,23 @@ document.addEventListener("DOMContentLoaded", () => {
     let world = new World(IMPORT_URL);
     world.render();
 
-    const toggleBtn = document.getElementById("import-export-button");
+    const toggleBtn = document.getElementById("toggle-trade-button");
     toggleBtn.addEventListener("click", (event) => {
-        if (world.tradeURL === EXPORT_URL){
-            world = new World(IMPORT_URL);
-        }
-        else {
-            world = new World(EXPORT_URL);
-        }
-        let body = document.getElementsByTagName("body")[0];
-        body.innerHTML = '';
-        world.render()
+        event.preventDefault();
+        reset();
+        toggleBtn.children[0].children[0].innerText = world.tradeURL === EXPORT_URL ? "To Exports" : "To Imports";
+        world = world.tradeURL === EXPORT_URL ? new World(IMPORT_URL) : new World(EXPORT_URL);
+        world.render();
     });
 });
+
+function reset(){
+    const world = document.getElementById("world");
+    const worldTooltip = document.getElementById("world-tooltip");
+    const rangeSlider = document.getElementById("range-slider");
+    const barChart = document.getElementById("bar-chart");
+    world.innerHTML = "";
+    worldTooltip.innerHTML = "";
+    rangeSlider.innerHTML = "";
+    barChart.innerHTML = "";
+}

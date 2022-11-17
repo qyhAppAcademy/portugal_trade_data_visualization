@@ -22,7 +22,7 @@ h1 {
     height: 40px;
 }
 
-#import-export-button img{
+#toggle-trade-button img{
     width: auto; 
     height: 40px;
 }
@@ -32,7 +32,6 @@ svg {
 
     padding: 0;
     margin: 0 auto;
-    // background-color: black;
     background: transparent;
 }
 
@@ -121,6 +120,61 @@ svg {
     color: black;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-li {
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+.logo-li a {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    width: 32px;
+    height: 32px;
+}
+
+.logo-li a img{
+    width: 32px;
+    height: auto;
+}
+
+nav div {
+    display: inline;
+}
+
+.container-name {
+    margin: 0;
+    padding: 0;
+
+    display: inline;
+}
+
+.example_b {
+    font-family: 'proxima-nova', sans-serif;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    background: white;
+    padding: 9px;
+    border-radius: 10px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+}
+
+.example_b:hover {
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+}
 // $color: purple;
 
 // #main>h1 {

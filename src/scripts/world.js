@@ -27,8 +27,6 @@ class World {
         this.worldMap = this._fetchWorldMap();
 
         this.trades = this._fetchTrades();
-        
-        console.log(this.trades);
     }
 
     render(){
@@ -102,8 +100,8 @@ class World {
     
     mouseMove(country, context){
         d3.select("#world-tooltip")
-            .style("left", (d3.mouse(context)[0] + 450) + "px")
-            .style("top", (d3.mouse(context)[1] + 100) + "px");
+            .style("left", (d3.mouse(context)[0] + 370) + "px")
+            .style("top", (d3.mouse(context)[1] + 145) + "px");
     }
 
     async _fetchWorldMap() {
