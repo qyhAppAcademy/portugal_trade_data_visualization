@@ -9,7 +9,7 @@
 
 * At the top, a world map on which users can interact with, and view trade partners of Portugal.
 
-* In the middle, a range slider for users to filter trade partners to render on the map and in the bar chart.
+* In the middle, a range slider for users to filter trade partners to render on the map and on the bar chart.
 
 * At the bottom, a bar chart for users to see the trade value of each trade partner.
 
@@ -20,9 +20,9 @@
 
 - [x] Browse individual trade partner of Portugal on the map
 
-- [x] Filter trade partners to display based on trade value
+- [x] Filter trade partners to display based on trade values
 
-- [x] View comparisons of trade value among trade partners
+- [x] View comparisons of trade values among trade partners
 
 - [x] Toggle between imports data and exports data
 
@@ -154,7 +154,7 @@
     }
 ```
 
-* Bar chart animation with transition, duration, and delay.
+* Bar chart animation is created using transition, duration, and delay.
 
 ```js
     this.svg.selectAll("myRect")
@@ -179,7 +179,7 @@
 
 * Tuesday: Create a range slider for users to filter trade partners on the map, based on trade value.
 
-* Wednesday: Create a bar chart for users to view the percentage of each partner’s trade data.
+* Wednesday: Create a bar chart for users to view the trade data of each partner.
 
 * Thursday Morning: Deploy to Github pages.
 
@@ -190,9 +190,9 @@
 
 * Use a 3D globe to display trade nations.
 
-* Display major trade routes that Portugal uses on the globe.
+* On the globe, display major trade routes that Portugal uses.
 
 
 ## <a name="licensing"></a> CC Licensing:
 
-* Portugal Trade Data from World Integrated Trade Solution(https://wits.worldbank.org/).
+* Portugal Trade Data from World Integrated Trade Solution (https://wits.worldbank.org/).
