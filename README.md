@@ -1,65 +1,198 @@
-**JS Project Proposal**
+# Portugal Trade Data Visualization
 
-Portugal Trade Data Visualization
-
-
-**Background**
-
-Portugal trade involves export and import data.
-
-This project is to visualize such data with regards to each trade partner using d3.js, and to provide UI for users to interact with such data.
+[Portugal Trade Data Visualization](https://qyhappacademy.github.io/portugal_trade_data_visualization/) is a data visualization of Portugal import and export trades. It displays every nation Portugal trades with on a global map. Users are able to interact with the map to get an in-depth look into the trade data. This project is inspired by the history of Portugal being a strong trading nation since the Age of Discovery.
 
 
-**Functionality & MVPs**
+## <a name="wireframes"></a> Wireframes
 
-With this Portugal Trade Data Visualization App, users will be able to:
+![alt text](https://github.com/qyhAppAcademy/portugal_trade_data_visualization/blob/main/wireframe.png)
 
-Select a specific trade partner on a map
+    * At the top, a world map on which users can interact with, and view trade partners of Portugal.
 
-Browse the trade data specifically to the trade partner
+    * In the middle, a range slider for users to filter trade partners to render on the map and in the bar chart.
 
-Filter trade partners on a map with user input
-
-View a chart where it shows the percentage of each partner’s contribution to the total trade
+    * At the bottom, a bar chart for users to see the trade value of each trade partner.
 
 
-In addition, this project will include:
+## <a name="functionality"></a> Functionality & MVPs
 
-    An About modal describing the background and user instructions
-    
-    A production README
+### With this Portugal Trade Data Visualization App, users will be able to:
 
+    - [x] Browse individual trade partner of Portugal on the map
 
-**Wireframes**
+    - [x] Filter trade partners to display based on trade value
 
-![alt text](https://github.com/qyhAppAcademy/portuguese_oceanic_trade_routes_data_visualization/blob/main/wireframe.png)
+    - [x] View comparisons of trade value among trade partners
 
-    In the middle, there will be a world map on which users can browse each trade partner of Portugal.
-
-    At the top, there will be a control section for filtering trade partners based on user input.
-
-    At the bottom, there will be a view chart section for users to see the percentage of each partner’s contribution to the total trade.
+    - [x] Toggle between imports data and exports data
 
 
-**Technologies, Libraries, APIs**
+## <a name="technologies"></a> Technologies, Libraries, APIs
 
-This project will be implemented with the following technologies:
+### This project uses the following technologies:
 
-    d3.js to display a world map, filters, and a view chart
+    * `HTML` to structure the app
 
-    Webpack and Babel to bundle and transpile the source JavaScript code
-    
-    npm to manage project dependencies
+    * `SCSS` to style
+
+    * `JavaScript` to implement application logic, fetch data, create animations, and add interactivity
+
+    * `D3.js` to display a world map, a range slider, and a bar chart
+
+    * `Webpack` to bundle and transpile the source JavaScript code
+
+    * `NPM` to manage project dependencies
+
+* Trade data is first fetched using d3.json. After the promise is fulfilled, data then is processed into trade objects and pushed into an array. Afterwards, that array is sorted and returned.
+
+```js
+    async _fetchTrades() {
+        const trades = await d3.json(this.tradeURL);
+        const result = [];
+        return this.worldMap.then((world) => {
+            let countries = topojson
+                                .feature(world, world.objects.countries)
+                                .features
+                                .map((feature)=>{
+                                    return feature.properties.name;
+                                });
+            trades.Partner.forEach(trade => {
+                const partner = trade["Partner Name"].trim();
+                const matchedPartner = countries.find((country) => {
+                    if(country.includes(partner) || partner.includes(country)){
+                        return country;
+                    }
+                });
+                if (matchedPartner !== undefined){
+                    let tradeAmount = trade["Export (US$ Thousand)"] || trade["Import (US$ Thousand)"];
+                    result.push(new Trade(
+                        matchedPartner,
+                        trade["Year"],
+                        trade["Trade Flow"],
+                        trade["Product Group"],
+                        tradeAmount));
+                }
+            });
+            result.sort(function (left, right) {
+                if (left.amount < right.amount) {
+                    return 1;
+                }
+                else if (left.amount > right.amount) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return result;
+        });
+    }
+```
+
+* World map is rendered by drawing each country in a D3 SVG element. Top 10 trade partners are highlighted. Each country is then bounded with a MOUSEOVER, a MOUSEMOVE, and a MOUSEOUT listener for users to view its trade data when hovered with a mouse.
+
+```js
+    render(){
+        this.worldMap
+            .then((world) => {
+                let that = this;
+
+                let countries = topojson.feature(world, world.objects.countries).features;
+
+                this.trades.then(function(trades) {
+                    that.svg.selectAll(".country")
+                        .data(countries)
+                        .enter()
+                        .append("path")
+                        .attr("class", "country")
+                        .attr("d", that.path)
+                        .on('mouseover', function (country) {
+                            that.mouseOverCountry(country, this, trades);
+                        })
+                        .on('mousemove', function (country) {
+                            that.mouseMove(country, this);
+                        })
+                        .on('mouseout', function (country) {
+                            that.mouseOutCountry(country, this);
+                        });
+
+                    const top10TradePartners = trades.slice(0, 10).map(trade => trade.partner);
+                    that._renderTradePartners(top10TradePartners);
+
+                    that.rangeSlider = new RangeSlider(trades);
+                    that.rangeSlider.render();
+                });
+            });
+    }
+```
+
+* Trade partners within a trade value range are first selected. Then, the top 10 trade partners within that range and the rest are rendered with 2 different color.
+
+```js
+    _renderTradePartnersWithinRange(){
+        d3.selectAll(".country").classed("selected-by-range-top-10", false);
+        d3.selectAll(".country").classed("selected-by-range", false);
+        const countries = d3.selectAll(".country");
+        const selected = [];
+        this.trades.forEach(trade => {
+            if (this.range[0] <= trade.amount && trade.amount <= this.range[1]) {
+                countries.each(function(country, i) {
+                    const name = country.properties.name;
+                    if (trade.partner === name) {
+                        selected.push(this);
+                    }
+                });
+            }
+        });
+        selected.forEach((el, idx) => {
+            if (idx < 10){
+                d3.select(el).classed("selected-by-range-top-10", true);
+            }else{
+                d3.select(el).classed("selected-by-range", true);
+            }
+        });
+    }
+```
+
+* Bar chart animation with transition, duration, and delay.
+
+```js
+    this.svg.selectAll("myRect")
+            .data(top10Trades)
+            .join("rect")
+            .attr("x", x(0))
+            .attr("y", trade => y(trade.partner))
+            .attr("width", 0)
+            .transition()
+            .duration(1000)
+            .delay(function (trade, i) { return i * 50 })
+            .attr("width", trade => x(trade.amount))
+            .attr("height", y.bandwidth())
+            .attr("fill", BAR_COLOR);
+```
+
+## <a name="implementation-timeline"></a> Implementation Timeline
+
+    * Friday & Weekend: Setup project, getting webpack up and running. Get the world map to display on the screen, and spend time getting comfortable with d3.js.
+
+    * Monday: Create a browsing functionality on the world map to enable users to view each trade partner’s data in detail.
+
+    * Tuesday: Create a range slider for users to filter trade partners on the map, based on trade value.
+
+    * Wednesday: Create a bar chart for users to view the percentage of each partner’s trade data.
+
+    * Thursday Morning: Deploy to Github pages.
 
 
-**Implementation Timeline**
+## <a name="future-implementations"></a> Future Implementations:
 
-    Friday & Weekend: Setup project, getting webpack up and running. Get the world map to show up on the screen, and spend time getting comfortable with d3.js.
+    * Add more statistical analysis on trades.
 
-    Monday: Create a browsing functionality on the world map to enable users to look at each trade partner’s data in detail.
+    * Use a 3D globe to display trade nations.
 
-    Tuesday: Use d3.js to filter trade partners on the world map, based on users input.
+    * Display major trade routes that Portugal uses on the globe.
 
-    Wednesday: Display view chart for users to see the percentage of each partner’s contribution to the total trade.
 
-    Thursday Morning: Continue working on the project if it is not complete. Deploy to Github pages. If time, rewrite this proposal as a production README.
+## <a name="licensing"></a> CC Licensing:
+
+    * Portugal Trade Data from World Integrated Trade Solution(https://wits.worldbank.org/).
