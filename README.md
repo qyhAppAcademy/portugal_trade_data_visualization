@@ -1,6 +1,6 @@
 # Portugal Trade Data Visualization
 
-[Portugal Trade Data Visualization](https://qyhappacademy.github.io/portugal_trade_data_visualization/) is a data visualization of Portugal import and export trades. It displays every nation Portugal trades with on a global map. Users are able to interact with the map to get an in-depth look into the trade data. This project is inspired by the history of Portugal being a strong trade nation since the Age of Discovery.
+[Portugal Trade Data Visualization](https://qyhappacademy.github.io/portugal_trade_data_visualization/) is a data visualization of Portugal imports and exports trade. It displays every nation Portugal trades with on a global map. Users are able to interact with the map to get an in-depth look into the trade data. This project is inspired by the history of Portugal being a strong trade nation since the Age of Discovery.
 
 
 ## <a name="wireframes"></a> Wireframes
