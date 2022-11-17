@@ -10,20 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("toggle-trade-button");
     toggleBtn.addEventListener("click", (event) => {
         event.preventDefault();
-        reset();
+        
         toggleBtn.children[0].children[0].innerText = world.tradeURL === EXPORT_URL ? "To Exports" : "To Imports";
+        
+        reset();
+        
         world = world.tradeURL === EXPORT_URL ? new World(IMPORT_URL) : new World(EXPORT_URL);
         world.render();
+
+        // world = world.tradeURL === EXPORT_URL ? new World(IMPORT_URL) : new World(EXPORT_URL);
+        // reset(world);
     });
 });
 
-function reset(){
-    const world = document.getElementById("world");
-    const worldTooltip = document.getElementById("world-tooltip");
-    const rangeSlider = document.getElementById("range-slider");
-    const barChart = document.getElementById("bar-chart");
-    world.innerHTML = "";
-    worldTooltip.innerHTML = "";
-    rangeSlider.innerHTML = "";
-    barChart.innerHTML = "";
+function reset() {
+    document.getElementById("world").innerHTML = "";
+    document.getElementById("world-tooltip").innerHTML = "";
+    document.getElementById("range-slider").innerHTML = "";
+    document.getElementById("bar-chart").innerHTML = "";
 }
+
+// function reset(world){
+//     document.getElementById("world-tooltip").innerHTML = "";
+//     document.getElementById("range-slider").innerHTML = "";
+//     document.getElementById("bar-chart").innerHTML = "";
+
+//     world.reset(world.tradeURL === EXPORT_URL ? IMPORT_URL : EXPORT_URL);
+// }

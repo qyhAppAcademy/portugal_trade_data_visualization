@@ -29,6 +29,19 @@ class World {
         this.trades = this._fetchTrades();
     }
 
+    // reset(tradeURL){
+    //     this.tradeURL = tradeURL;
+    //     this.worldMap = this._fetchWorldMap();
+    //     this.trades = this._fetchTrades();
+
+    //     d3.selectAll(".country")
+    //         .each(function (country, i) {
+    //             d3.select(this).classed("selected-top-10", false);
+    //             d3.select(this).classed("selected-by-range", false);
+    //             d3.select(this).classed("selected-by-range-top-10", false);
+    //         });
+    // }
+
     render(){
         this.worldMap
             .then((world) => {
