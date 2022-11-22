@@ -50,7 +50,7 @@ function createUserGuide(){
 
     // When the user clicks anywhere outside of the user guide, close it
     window.addEventListener("click", (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         if (event.target == userGuide) {
             userGuide.style.display = "none";
         }
