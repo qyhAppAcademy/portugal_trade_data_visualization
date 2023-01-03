@@ -113,8 +113,8 @@ class World {
     
     mouseMove(country, context){
         d3.select("#world-tooltip")
-            .style("left", (d3.mouse(context)[0] + 370) + "px")
-            .style("top", (d3.mouse(context)[1] + 145) + "px");
+            .style("left", (d3.mouse(context)[0] + 30) + "px")
+            .style("top", (d3.mouse(context)[1] + 150) + "px");
     }
 
     async _fetchWorldMap() {
