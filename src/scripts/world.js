@@ -109,7 +109,6 @@ class World {
             .style("display", "none");
 
         d3.selectAll(".world-tooltip-content").remove();
-        //Works
     }
     
     mouseMove(country, context){
