@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         
         toggleBtn.children[0].children[0].innerText = world.tradeURL === EXPORT_URL ? "To Exports" : "To Imports";
-        
+        document.getElementById("project-title").innerText = world.tradeURL === EXPORT_URL ? "Portugal Exports Data Visualization" : "Portugal Imports Data Visualization";
         reset();
         
         world = world.tradeURL === EXPORT_URL ? new World(IMPORT_URL) : new World(EXPORT_URL);
